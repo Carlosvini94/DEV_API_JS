@@ -48,7 +48,6 @@ const removeBill = function(){
             listData()
         }
     })
-    
 }
 
 $('#list-table tbody').on('click', '#btn_delete', removeBill)
