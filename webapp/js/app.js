@@ -1,12 +1,12 @@
 $(document).ready(function ($) {
-    listData()
+    listBills()
 })
 
-function listData() {
+function listBills() {
     $.get('http://localhost:3000/bills/', function (result) {
         $('#list-table tbody').empty()
         if (!result.lenght && !result.status) {
-            return
+            return console.log("ERRO GET BILLS")
         }
         
         result.data.forEach(function (bill) {
@@ -21,6 +21,19 @@ function listData() {
     })
 }
 
+function listCategories(){
+    $.get('http://localhost:3000/categories/', function(result){
+        if(!result.lenght && !result.status){
+            return console.log("ERRO GET CATEGORIES")
+        }
+        result.data.forEach(function (category){
+            let selectVal = '<option>' + category.name + '</option>'
+
+            $('#select-Categories').append(selectVal)
+        })
+    })
+}
+
 function createBill(billTitle, billPrice){
     if(!billTitle || !billPrice){
         console.log("Invalide Body")
@@ -29,6 +42,9 @@ function createBill(billTitle, billPrice){
         title: billTitle,
         price: billPrice
     })
+
+    $('#billName').val("");
+    $('#billPrice').val("");
 }
 
 $('#sendBill').on('click', function(){
@@ -36,7 +52,7 @@ $('#sendBill').on('click', function(){
     let billPrice = $('#billPrice').val();
 
     createBill(billTitle, billPrice)
-    listData()
+    listBills()
 })
 
 const removeBill = function(){
@@ -45,9 +61,26 @@ const removeBill = function(){
         type: "Delete",
         url: "http://localhost:3000/bills/" + id,
         success: function(){
-            listData()
+            listBills()
         }
     })
 }
 
 $('#list-table tbody').on('click', '#btn_delete', removeBill)
+
+function createCategory(categoryName){
+    if(!categoryName){
+        console.log("Invalide Body")
+    }
+    $.post('http://localhost:3000/categories/', {
+        name: categoryName,
+    })
+}
+
+$('#sendCategory').on('click', function(){
+    let categoryName = $('#categoryName').val();
+
+    createCategory(categoryName)
+
+    $('#categoryName').val("");
+})

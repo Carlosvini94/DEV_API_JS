@@ -18,39 +18,65 @@
 
         <hr>
 
-        <div class="row">
-            <form action="">
-                <div class="form-group">
-                    <input id="billName" class="form-control" type="text" name="title" placeholder="Enter Bill Name">
+        <section id="category">
+            <div class="container">
+                <div class="row">
+                    <h4>New Category</h4>
                 </div>
-                <div class="form-group">
-                    <input id="billPrice" class="form-control" type="number" name="price" placeholder="Enter Bill Price">
+                <div class="row">
+                    <div class="form-group">
+                        <input type="text" id="categoryName" class="form-control" name="name" placeholder="Category name">
+                    </div>
+                    <div class="form-group mx-sm-2">
+                        <button id="sendCategory" type="button" class="btn btn-primary">Send</button>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <button id="sendBill" type="button" class="btn btn-primary">Send</button>
-                </div>
-            </form>
-        </div>
-    </div>
+            </div>
+        </section>
 
-    
+        <hr>
+
+        <!-- <div class="row"> -->
+        <div class="container">
+            <div class="row">
+                <h4>New Category</h4>
+            </div>
+        </div>
+        <form class="form-inline">
+            <div class="form-group mx-sm-1">
+                <input id="billName" class="form-control" type="text" name="title" placeholder="Enter Bill Name">
+            </div>
+            <div class="form-group mx-sm-1">
+                <input id="billPrice" class="form-control" type="number" name="price" placeholder="Enter Bill Price">
+            </div>
+            <div class="form-group mx-sm-1">
+                <select name="categories" id="select-Categories" ></select>
+            </div>
+            <div class="form-group mx-sm-1">
+                <button id="sendBill" type="button" class="btn btn-primary">Send</button>
+            </div>
+        </form>
+    </div>
+    <!-- </div> -->
+
+
     <section class="list">
         <div class="container">
             <hr>
-            <div class="row">
-                <table id="list-table" class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
+            <!-- <div class="row"> -->
+            <table id="list-table" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </div>
+        <!-- </div> -->
     </section>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
