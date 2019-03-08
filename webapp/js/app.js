@@ -1,5 +1,6 @@
 $(document).ready(function ($) {
     listBills()
+    listCategories()
 })
 
 function listBills() {
@@ -23,6 +24,7 @@ function listBills() {
 
 function listCategories(){
     $.get('http://localhost:3000/categories/', function(result){
+        $('#select-Categories').empty()
         if(!result.lenght && !result.status){
             return console.log("ERRO GET CATEGORIES")
         }
@@ -53,6 +55,7 @@ $('#sendBill').on('click', function(){
 
     createBill(billTitle, billPrice)
     listBills()
+    listCategories()
 })
 
 const removeBill = function(){
@@ -83,4 +86,5 @@ $('#sendCategory').on('click', function(){
     createCategory(categoryName)
 
     $('#categoryName').val("");
+    listCategories()
 })
