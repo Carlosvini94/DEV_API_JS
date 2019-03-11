@@ -15,9 +15,10 @@ function listBills() {
             let tmpl = '<tr>' +
                        '   <td>' + bill.title + '</td>' +
                        '   <td>' + bill.price + '</td>' +
+                       '   <td><a href="http://localhost:3000/address/' + bill.cep + '" target="_blank">' + bill.cep + '</a></td>' +
                        '   <td><button class="btn btn-danger btn-sm" id="btn_delete" data-id="' + idBill +'">Delete</button></td>' +
                        '</tr>'
-            $('#list-table tbody').append(tmpl)
+            $('#list-table tbody').append(tmpl);
         });
     })
 }
@@ -28,32 +29,38 @@ function listCategories(){
         if(!result.lenght && !result.status){
             return console.log("ERRO GET CATEGORIES")
         }
+        let selectVal = '<option value="selectOne" selected>---</option>'
         result.data.forEach(function (category){
-            let selectVal = '<option>' + category.name + '</option>'
+            selectVal += '<option value="' + category._id + '">' + category.name + '</option>'
 
-            $('#select-Categories').append(selectVal)
         })
+        $('#select-Categories').append(selectVal)
     })
 }
 
-function createBill(billTitle, billPrice){
-    if(!billTitle || !billPrice){
+function createBill(billTitle, billPrice, category, cep){
+    if(!billTitle || !billPrice || !category){
         console.log("Invalide Body")
     }
     $.post('http://localhost:3000/bills/', {
         title: billTitle,
-        price: billPrice
+        price: billPrice,
+        category: category,
+        cep: cep
     })
 
     $('#billName').val("");
     $('#billPrice').val("");
+    $('#billCep').val("")
 }
 
 $('#sendBill').on('click', function(){
     let billTitle = $('#billName').val();
     let billPrice = $('#billPrice').val();
+    let category = $('#select-Categories').val();
+    let cep = $('#billCep').val()
 
-    createBill(billTitle, billPrice)
+    createBill(billTitle, billPrice, category, cep)
     listBills()
     listCategories()
 })

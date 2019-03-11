@@ -9,6 +9,14 @@ const Bill = new mongoose.Schema({
         type: Number,
         required: true
     },
+    cep: {
+        type: String
+    },
+    category: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category',
+        required: true
+    },
     status: {
         type: Boolean,
         default: false
